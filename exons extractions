@@ -1,0 +1,88 @@
+
+(incomplete)
+
+
+extracting exons and introns from perticular dna or mrna 
+
+
+
+why we are doing that : 
+--Coded and Uncoded Regions: In a DNA or mRNA sequence, exons are the regions that code for proteins, while introns are non-coding regions. Identifying these regions helps us understand how genes are expressed.
+
+--Pattern Identification: By analyzing patterns in DNA sequences, we can identify which regions are exons and which are introns. This is crucial for understanding gene functions and can be particularly useful when a new species is discovered.
+
+--Applications: Knowing the structure of exons and introns can aid in classifying new organisms, understanding their genetic makeup, and possibly identifying them as new species.
+
+In summary, a particular part of a gene is termed as a "coded region" (exon) if it contributes to the final protein product through translation. Conversely, it is termed as a "non-coded region" (intron) if it is not included in the final mRNA used for protein synthesis.
+
+how we can achieve that : 
+
+--To extract exons and introns, use a Python program that takes a DNA sequence and the positions of exons as input. The program then identifies and separates the exons and introns based on these positions.
+
+what is splicing :
+--Splicing: Splicing is the process by which introns are removed from a pre-mRNA transcript, and exons are joined together to form the final mRNA that will be translated into a protein. This process is crucial for producing functional proteins in eukaryotic cells.
+
+
+-given  
+  --exons sites 
+  --introns sites with seq number 
+
+
+
+note - we will implement how to extract exons and introns with seq.
+
+the python program to extract the seq.. (this program needs modifications) -------------------------------------
+
+---def find_introns_and_exons(dna_seq, exon_positions):
+    """
+    Identifies introns and exons in a given DNA sequence.
+
+    Parameters:
+    dna_seq (str): The DNA sequence.
+    exon_positions (list of tuples): List of tuples where each tuple contains start and end positions of exons.
+
+    Returns:
+    dict: A dictionary with 'exons' and 'introns' keys containing respective sequences.
+    """
+
+    exons = []
+    introns = []
+
+    # Sort exon positions by start index
+    exon_positions.sort()
+
+    # Extract exons and introns
+    prev_end = 0
+    for start, end in exon_positions:
+        if start > prev_end + 1:
+            introns.append(dna_seq[prev_end:start])
+        exons.append(dna_seq[start:end])
+        prev_end = end
+
+    if prev_end < len(dna_seq):
+        introns.append(dna_seq[prev_end:])
+
+    return {"exons": exons, "introns": introns}
+
+# Example DNA sequence
+dna_seq = "ATGCGTAACTGATGCGTACGTAGCTAGCGTATCGATCGTAGCTAGCGTAA"
+
+# Example exon positions (1-based indexing)
+exon_positions = [(0, 10), (20, 30), (40, 50)]  # Example positions
+
+# Convert 1-based to 0-based for Python indexing
+# exon_positions = [(start - 1, end) for start, end in exon_positions]
+
+# Find introns and exons
+result = find_introns_and_exons(dna_seq, exon_positions)
+
+# Display results
+print("Exons:")
+for exon in result["exons"]:
+    print(exon)
+
+print("\nIntrons:")
+for intron in result["introns"]:
+    print(intron)
+
+===========================================================================================================
