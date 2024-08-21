@@ -1,6 +1,8 @@
 
 (incomplete)
 
+i need to make the system which proves in any scenarios it can predict and perform well with any edge-cutting cases and say it is working fine 
+
 
 extracting exons and introns from perticular dna or mrna 
 
@@ -86,3 +88,22 @@ for intron in result["introns"]:
     print(intron)
 
 ===========================================================================================================
+
+now the main questions comes , how will i identify the seq from given series and say its exon and introns 
+NOTE - precise identifications is required : -identification and the verification
+Identifications:--
+
+which seq can say its exons and introns :--
+
+1)  BLAST tool :  it is heavely depended on Historical data , uses machine learning algos and determines which is exons and introns 
+
+Questions 1) what if new spices arrives ?
+
+we will use 3 methods to ientify perticular exons and intons :
+1) 5prime and 3 prime splice :  GT as start of intons || AG as end of introns -> can be done by regular experessions 
+2) CPG islands : CG appears frequently - higher exons 
+3) patterns in necleoutides are more common in exons than introns 
+
+
+
+
